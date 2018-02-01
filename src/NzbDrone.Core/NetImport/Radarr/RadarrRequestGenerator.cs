@@ -27,7 +27,36 @@ namespace NzbDrone.Core.NetImport.Radarr
 
             var baseUrl = $"{Settings.APIURL.TrimEnd("/")}";
 
-            var request = new NetImportRequest($"{baseUrl}{Settings.Path}", HttpAccept.Json);
+            var paramsString = "";
+
+            if (!Settings.HideAdult)
+            {
+                paramsString += "&adult=true";
+            }
+
+            if (Settings.YearRange.IsNotNullOrWhiteSpace() && Settings.YearRange.Contains("<>"))
+            {
+                paramsString += $"&year={Settings.YearRange}";
+            }
+
+            if (Settings.PopularityRange.IsNotNullOrWhiteSpace() && Settings.PopularityRange.Contains("<>"))
+            {
+                paramsString += $"&popularity={Settings.PopularityRange}";
+            }
+
+            if (Settings.AdditionalParameters.IsNotNullOrWhiteSpace())
+            {
+                paramsString += Settings.AdditionalParameters;
+            }
+
+            var url = $"{baseUrl}{Settings.Path}";
+            if (!url.Contains("?"))
+            {
+                url += "?";
+                paramsString = paramsString.TrimStart('&');
+            }
+            
+            var request = new NetImportRequest($"{url}{paramsString}", HttpAccept.Json);
 
             request.HttpRequest.SuppressHttpError = true;
 

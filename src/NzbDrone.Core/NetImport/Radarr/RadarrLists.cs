@@ -62,8 +62,24 @@ namespace NzbDrone.Core.NetImport.Radarr
                     Implementation = GetType().Name,
                     Settings = new RadarrSettings { Path = "/imdb/list?listId=LISTID" },
                 };
-
-
+                yield return new NetImportDefinition
+                {
+                    Name = "Person List",
+                    Enabled = Enabled,
+                    EnableAuto = true,
+                    ProfileId = 1,
+                    Implementation = GetType().Name,
+                    Settings = new RadarrSettings { Path = "/person/PERSONID/movies" },
+                };
+                yield return new NetImportDefinition
+                {
+                    Name = "Collection",
+                    Enabled = Enabled,
+                    EnableAuto = true,
+                    ProfileId = 1,
+                    Implementation = GetType().Name,
+                    Settings = new RadarrSettings { Path = "/collection/COLLECTIONID/movies" },
+                };
         }
 
         public override INetImportRequestGenerator GetRequestGenerator()
