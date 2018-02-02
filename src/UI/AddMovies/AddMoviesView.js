@@ -5,6 +5,7 @@ var Marionette = require('marionette');
 var AddMoviesCollection = require('./AddMoviesCollection');
 var AddFromListCollection = require('./List/AddFromListCollection');
 var SearchResultCollectionView = require('./SearchResultCollectionView');
+var MultiSearchResultView = require('./MultiSearchResultView');
 var DiscoverableListDropdownView = require("./DiscoverableListDropdownView");
 var DiscoverableListCollection = require("./DiscoverableListCollection");
 var DiscoverMoviesCollection = require("./DiscoverMoviesCollection");
@@ -61,10 +62,11 @@ module.exports = Marionette.Layout.extend({
 				this.listenTo(vent, vent.Events.MoviesAdded, this._onMoviesAdded);
 				this.listenTo(this.collection, 'sync', this._showResults);
 
-				this.resultCollectionView = new SearchResultCollectionView({
+				/*this.resultCollectionView = new SearchResultCollectionView({
 						collection : this.collection,
 						isExisting : this.isExisting
-				});
+				});*/
+				this.multiSearchResultView = new MultiSearchResultView({multi : true}, this.collection);
 
 				/*this.listsDropdown = new DiscoverableListCollectionView({
 						collection : DiscoverableListCollection
@@ -177,7 +179,7 @@ module.exports = Marionette.Layout.extend({
 				}
 
 				else if (!this.isExisting) {
-						this.resultCollectionView.setExisting(options.movie.get('tmdbId'));
+						//this.resultCollectionView.setExisting(options.movie.get('tmdbId'));
 						/*this.collection.term = '';
 						this.collection.reset();
 						this._clearResults();
@@ -187,7 +189,7 @@ module.exports = Marionette.Layout.extend({
 		},
 
 		_onLoadMore : function() {
-				var showingAll = this.resultCollectionView.showMore();
+				var showingAll = false;//this.resultCollectionView.showMore();
 				if (!this.isDiscover) {
 					this.ui.searchBar.show();
 				}
@@ -219,7 +221,7 @@ module.exports = Marionette.Layout.extend({
 								}
 
 						} else {
-								this.searchResult.show(this.resultCollectionView);
+								this.searchResult.show(this.multiSearchResultView);
 								if (!this.showingAll) {
 										this.ui.loadMore.show();
 								}
@@ -260,7 +262,7 @@ module.exports = Marionette.Layout.extend({
 			if (this.collection.specialProperty === "special") {
 				this.collection.reset();
 				this.collection = new DiscoverMoviesCollection();
-				this.resultCollectionView.collection = this.collection;
+				//this.resultCollectionView.collection = this.collection;
 			}
 
 			this.listenTo(this.collection, 'sync', this._showResults);
@@ -301,7 +303,7 @@ module.exports = Marionette.Layout.extend({
 			this.listenTo(this.collection, 'sync', this._showResults);
 			this.searchResult.show(new LoadingView());
 			this.currentSearchPromise = this.collection.fetch({ data: { listId: options.target.value } });
-			this.resultCollectionView.collection = this.collection;
+			//this.resultCollectionView.collection = this.collection;
 		}
 
 

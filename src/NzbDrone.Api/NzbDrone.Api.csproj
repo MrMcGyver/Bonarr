@@ -122,9 +122,12 @@
     <Compile Include="Movies\AlternativeTitleModule.cs" />
     <Compile Include="Movies\AlternativeYearResource.cs" />
     <Compile Include="Movies\AlternativeYearModule.cs" />
+    <Compile Include="Movies\CollectionSearchResource.cs" />
     <Compile Include="Movies\MovieModuleWithSignalR.cs" />
     <Compile Include="Movies\MovieBulkImportModule.cs" />
     <Compile Include="Movies\MovieFileModule.cs" />
+    <Compile Include="Movies\PersonSearchResource.cs" />
+    <Compile Include="Movies\SearchResultResource.cs" />
     <Compile Include="Series\MovieModule.cs" />
     <Compile Include="Movies\RenameMovieModule.cs" />
     <Compile Include="Movies\RenameMovieResource.cs" />

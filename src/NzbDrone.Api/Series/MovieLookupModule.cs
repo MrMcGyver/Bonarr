@@ -5,6 +5,7 @@ using NzbDrone.Core.MediaCover;
 using NzbDrone.Core.MetadataSource;
 using System.Linq;
 using System;
+using NzbDrone.Api.Movies;
 using NzbDrone.Api.REST;
 
 namespace NzbDrone.Api.Movie
@@ -46,7 +47,7 @@ namespace NzbDrone.Api.Movie
         private Response Search()
         {
             var imdbResults = _searchProxy.SearchForNewMovie((string)Request.Query.term);
-            return MapToResource(imdbResults).AsResponse();
+            return imdbResults.ToResource().AsResponse();
         }
 
         private static IEnumerable<MovieResource> MapToResource(IEnumerable<Core.Tv.Movie> movies)
