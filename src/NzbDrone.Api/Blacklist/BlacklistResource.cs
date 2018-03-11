@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using NzbDrone.Api.Movies;
+using NzbDrone.Api.Movie;
 using NzbDrone.Api.REST;
 using NzbDrone.Core.Qualities;
+using NzbDrone.Api.Series;
 using NzbDrone.Core.Indexers;
 
 namespace NzbDrone.Api.Blacklist
@@ -19,6 +20,7 @@ namespace NzbDrone.Api.Blacklist
         public string Indexer { get; set; }
         public string Message { get; set; }
         public MovieResource Movie { get; set; }
+        public SeriesResource Series { get; set; }
     }
 
     public static class BlacklistResourceMapper
@@ -39,7 +41,8 @@ namespace NzbDrone.Api.Blacklist
                 Protocol = model.Protocol,
                 Indexer = model.Indexer,
                 Message = model.Message,
-                Movie = model.Movie.ToResource()
+                Movie = model.Movie.ToResource(),
+                Series = model.Series.ToResource()
             };
         }
     }

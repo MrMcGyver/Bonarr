@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -131,7 +131,7 @@ namespace NzbDrone.Core.Extras.Metadata.Consumers.Xbmc
 
                 if (movie.InCinemas.HasValue)
                 {
-                    details.Add(new XElement("premiered", movie.InCinemas.Value.ToString("yyyy-MM-dd")));
+                    details.Add(new XElement("premiered", movie.InCinemas.Value.ToString()));
                 }
 
                 foreach (var genre in movie.Genres)

@@ -165,7 +165,12 @@ namespace NzbDrone.Core.MediaFiles
                 if (movie.MovieFileId != 0)
                 {
                     //Since there is no folder, there can't be any files right?
-                    _mediaFileTableCleanupService.Clean(movie, new List<string>());
+                    // Delete Movie from MovieFiles
+                    _movieFileRepository.Delete(movie.MovieFileId);
+
+                    // Update Movie
+                    movie.MovieFileId = 0;
+                    _movieService.UpdateMovie(movie);
 
                     _logger.Debug("Movies folder doesn't exist: {0}", movie.Path);
                 }

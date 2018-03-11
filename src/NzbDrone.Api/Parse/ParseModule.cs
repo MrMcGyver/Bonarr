@@ -1,4 +1,5 @@
-using NzbDrone.Api.Movies;
+﻿using NzbDrone.Api.Episodes;
+using NzbDrone.Api.Series;
 using NzbDrone.Core.Parser;
 
 namespace NzbDrone.Api.Parse
@@ -17,32 +18,7 @@ namespace NzbDrone.Api.Parse
         private ParseResource Parse()
         {
             var title = Request.Query.Title.Value as string;
-            var parsedMovieInfo = Parser.ParseMovieTitle(title, false);
-
-            if (parsedMovieInfo == null)
-            {
-                return null;
-            }
-
-            var remoteMovie = _parsingService.Map(parsedMovieInfo, "");
-
-            if (remoteMovie != null)
-            {
-                return new ParseResource
-                {
-                    Title = title,
-                    ParsedMovieInfo = remoteMovie.RemoteMovie.ParsedMovieInfo,
-                    Movie = remoteMovie.Movie.ToResource()
-                };
-            }
-            else
-            {
-                return new ParseResource
-                {
-                    Title = title,
-                    ParsedMovieInfo = parsedMovieInfo
-                };
-            }
+            return null;
         }
     }
 }

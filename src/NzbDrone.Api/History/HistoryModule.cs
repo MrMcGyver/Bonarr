@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using Nancy;
 using NzbDrone.Api.Extensions;
-using NzbDrone.Api.Movies;
+using NzbDrone.Api.Movie;
 using NzbDrone.Core.Datastore;
 using NzbDrone.Core.DecisionEngine;
 using NzbDrone.Core.Download;

@@ -26,7 +26,6 @@ namespace Radarr.Host
         private readonly IBrowserService _browserService;
         private readonly IContainer _container;
         private readonly Logger _logger;
-        private CancelHandler _cancelHandler;
 
         public NzbDroneServiceFactory(IConfigFileProvider configFileProvider,
                                       IHostController hostController,
@@ -54,8 +53,7 @@ namespace Radarr.Host
         {
             if (OsInfo.IsNotWindows)
             {
-                //Console.CancelKeyPress += (sender, eventArgs) => eventArgs.Cancel = true;
-                //_cancelHandler = new CancelHandler();
+                Console.CancelKeyPress += (sender, eventArgs) => LogManager.Configuration = null;
             }
 
             _runtimeInfo.IsRunning = true;
@@ -68,7 +66,6 @@ namespace Radarr.Host
                 _browserService.LaunchWebUI();
             }
 
-            
             _container.Resolve<IEventAggregator>().PublishEvent(new ApplicationStartedEvent());
         }
 

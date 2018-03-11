@@ -1,6 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
-using NzbDrone.Api.Movies;
+using NzbDrone.Api.Movie;
 using NzbDrone.Integration.Test.Client;
 using System;
 using System.Collections.Generic;

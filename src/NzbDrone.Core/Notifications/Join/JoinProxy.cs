@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using FluentValidation.Results;
 using NLog;
-using NzbDrone.Common.Extensions;
 using RestSharp;
 using NzbDrone.Core.Rest;
 using NzbDrone.Common.Serializer;
@@ -76,11 +75,7 @@ namespace NzbDrone.Core.Notifications.Join
 
             var client = RestClientFactory.BuildClient(URL);
 
-            if (settings.DeviceNames.IsNotNullOrWhiteSpace())
-            {
-                request.AddParameter("deviceNames", settings.DeviceNames);
-            }
-            else if (settings.DeviceIds.IsNotNullOrWhiteSpace())
+            if (!string.IsNullOrEmpty(settings.DeviceIds))
             {
                 request.AddParameter("deviceIds", settings.DeviceIds);
             }

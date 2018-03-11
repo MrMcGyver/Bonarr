@@ -9,6 +9,9 @@ var LoadingView = require('../Shared/LoadingView');
 var ManualImportRow = require('./ManualImportRow');
 var SelectAllCell = require('../Cells/SelectAllCell');
 var PathCell = require('./Cells/PathCell');
+var SeriesCell = require('./Cells/SeriesCell');
+var SeasonCell = require('./Cells/SeasonCell');
+var EpisodesCell = require('./Cells/EpisodesCell');
 var QualityCell = require('./Cells/QualityCell');
 var FileSizeCell = require('../Cells/FileSizeCell');
 var ApprovalStatusCell = require('../Cells/ApprovalStatusCell');
@@ -52,6 +55,24 @@ module.exports = Marionette.Layout.extend({
             cell       : MovieCell,
             sortable   : true
         },
+        // {
+        //     name       : 'series',
+        //     label      : 'Series',
+        //     cell       : SeriesCell,
+        //     sortable   : true
+        // },
+        // {
+        //     name       : 'seasonNumber',
+        //     label      : 'Season',
+        //     cell       : SeasonCell,
+        //     sortable   : true
+        // },
+        // {
+        //     name       : 'episodes',
+        //     label      : 'Episode(s)',
+        //     cell       : EpisodesCell,
+        //     sortable   : false
+        // },
         {
             name       : 'quality',
             label      : 'Quality',
@@ -169,6 +190,30 @@ module.exports = Marionette.Layout.extend({
             return;
         }
 
+        // if (_.any(selected, function (model) {
+        //         return !model.has('series');
+        //     })) {
+
+        //     this._showErrorMessage('Series must be chosen for each selected file');
+        //     return;
+        // }
+
+        // if (_.any(selected, function (model) {
+        //         return !model.has('seasonNumber');
+        //     })) {
+
+        //     this._showErrorMessage('Season must be chosen for each selected file');
+        //     return;
+        // }
+
+        // if (_.any(selected, function (model) {
+        //         return !model.has('episodes') || model.get('episodes').length === 0;
+        //     })) {
+
+        //     this._showErrorMessage('One or more episodes must be chosen for each selected file');
+        //     return;
+        // }
+
         var importMode = this.ui.importMode.val();
 
         CommandController.Execute('manualImport', {
@@ -177,6 +222,8 @@ module.exports = Marionette.Layout.extend({
                 return {
                     path       : file.get('path'),
                     movieId    : file.get('movie').id,
+                    // seriesId   : file.get('series').id,
+                    // episodeIds : _.map(file.get('episodes'), 'id'),
                     quality    : file.get('quality'),
                     downloadId : file.get('downloadId')
                 };

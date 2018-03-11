@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Nancy;
 using Nancy.Extensions;
 using NzbDrone.Api.Extensions;
-using NzbDrone.Api.Movies;
+using NzbDrone.Api.Movie;
 using NzbDrone.Core.MetadataSource;
 using NzbDrone.Core.Tv;
 

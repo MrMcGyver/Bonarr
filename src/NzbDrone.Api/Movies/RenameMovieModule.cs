@@ -1,4 +1,4 @@
-using NzbDrone.Api.REST;
+﻿using NzbDrone.Api.REST;
 using NzbDrone.Core.MediaFiles;
 using System;
 using System.Collections.Generic;

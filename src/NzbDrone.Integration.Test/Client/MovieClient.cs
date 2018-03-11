@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
-using NzbDrone.Api.Movies;
+using NzbDrone.Api.Movie;
 using RestSharp;
 
 namespace NzbDrone.Integration.Test.Client

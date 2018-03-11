@@ -94,15 +94,13 @@ module.exports = Marionette.Layout.extend({
 					name :'monitor',
 					label: 'Monitor',
 					cell : MonitorCell,
-					cellValue : 'this',
-					sortable : false,
+					cellValue : 'this'
 				},
 				{
 					name : 'profileId',
 					label : 'Profile',
 					cell  : ProfileCell,
 					cellValue : "this",
-					sortable : false,
 				},
 				{
 					name     : 'quality',

@@ -4,6 +4,7 @@ using System.Linq;
 using Marr.Data;
 using Nancy;
 using NzbDrone.Api;
+using NzbDrone.Api.Movie;
 using NzbDrone.Common.Cache;
 using NzbDrone.Common.Extensions;
 using NzbDrone.Common.Messaging;
@@ -18,7 +19,7 @@ using NzbDrone.Core.RootFolders;
 using NzbDrone.Core.Tv;
 using NzbDrone.Core.Tv.Events;
 
-namespace NzbDrone.Api.Movies
+namespace NzbDrone.Api.Movie
 {
     public class AlternativeYearModule : NzbDroneRestModule<AlternativeYearResource>
     {
